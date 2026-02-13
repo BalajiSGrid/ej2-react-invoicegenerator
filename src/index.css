@@ -1,0 +1,2577 @@
+:root {
+  --brand-50: #f3e8ff;
+  --brand-500: #7c3aed;
+  --brand-600: #6d28d9;
+  --brand-700: #5b21b6;
+  --primary-blue: #2970ff;
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-300: #cbd5e1;
+  --gray-500: #64748b;
+  --danger-500: #ef4444;
+  /* standard red */
+  --danger-600: #dc2626;
+  --danger-700: #b91c1c;
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, .08);
+  --radius-lg: 16px;
+  --radisu-lg-2: 16px 16px 0 0;
+  --pill: 999px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  /* Typography System - Consistent across UI and PDF */
+  /* Font family applies Inter for UI, Helvetica as fallback for PDF compatibility */
+  /* --font-family: 'Roboto', sans-serif; */
+  --font-family: Helvetica Neue, Helvetica, Arial, sans-serif, -apple-system, BlinkMacSystemFont;
+  /* Font weights - standardized across all components */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+  /* Font sizes - relative to base 16px */
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 28px;
+  --font-size-4xl: 32px;
+  --font-size-5xl: 36px;
+  --font-size-6xl: 42px;
+  /* Line heights for readability */
+  --line-height-tight: 1;
+  --line-height-normal: 1.4;
+  --line-height-relaxed: 1.6;
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  --color: #0f172a;
+  background: #fff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  font-family: var(--font-family);
+}
+
+#root {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-8);
+}
+
+/* Outer shell wraps page spacing only; border sits on app-container */
+.invoice-shell {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  overflow: visible;
+  font-family: var(--font-family);
+}
+
+.invoice-shell>.app-container {
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  background: #fff;
+  overflow: hidden;
+  padding: var(--space-6);
+}
+
+/* Allow the invoice header card to bleed to the container edges (no outer padding) */
+.invoice-shell>.app-container>.invoice-card {
+  margin: calc(var(--space-8) * -1);
+  margin-bottom: 0;
+}
+
+.app-container {
+  display: grid;
+  gap: var(--space-8);
+  font-family: var(--font-family);
+}
+
+.invoice-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  background: linear-gradient(135deg, var(--brand-500), var(--brand-700));
+  color: #fff;
+  border-radius: var(--radisu-lg-2);
+  padding: 28px var(--space-8);
+  box-shadow: var(--shadow-md);
+  font-family: var(--font-family);
+}
+
+.invoice-card__left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--font-family);
+}
+
+/* Right side of the header aligns all elements to the card's right edge */
+.invoice-card__right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-family: var(--font-family);
+}
+
+.invoice-card .title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family);
+}
+
+.invoice-card .subtitle {
+  opacity: 0.95;
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  letter-spacing: .30px
+}
+
+/* === Editable title/subtitle within the purple header card === */
+.invoice-card .invoice-title-input.e-input-group,
+.invoice-card .invoice-title-input.e-control-wrapper,
+.invoice-card .invoice-subtitle-input.e-input-group,
+.invoice-card .invoice-subtitle-input.e-control-wrapper {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Kill material underline pseudo-elements for these two inputs */
+.invoice-card .invoice-title-input.e-input-group:before,
+.invoice-card .invoice-title-input.e-input-group:after,
+.invoice-card .invoice-subtitle-input.e-input-group:before,
+.invoice-card .invoice-subtitle-input.e-input-group:after,
+.invoice-card .invoice-title-input.e-control-wrapper:before,
+.invoice-card .invoice-title-input.e-control-wrapper:after,
+.invoice-card .invoice-subtitle-input.e-control-wrapper:before,
+.invoice-card .invoice-subtitle-input.e-control-wrapper:after {
+  display: none !important;
+}
+
+/* Title: large, bold, white */
+.invoice-card .invoice-title-input input.e-input {
+  color: #fff !important;
+  background: transparent !important;
+  padding: 0 !important;
+  font-size: var(--font-size-3xl) !important;
+  font-weight: var(--font-weight-bold) !important;
+  letter-spacing: .30px;
+}
+
+/* Subtitle: white, slightly smaller */
+.invoice-card .invoice-subtitle-input input.e-input {
+  color: #fff !important;
+  opacity: .95;
+  background: transparent !important;
+  padding: 0 !important;
+  font-size: var(--font-size-base) !important;
+  letter-spacing: .30px;
+}
+
+.badge-pill {
+  background: rgba(255, 255, 255, .18);
+  padding: 8px 16px;
+  border-radius: var(--pill);
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-family);
+}
+
+/* Logo uploader */
+.logo-upload {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, .15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.logo-upload:hover {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, .35) inset;
+  transform: scale(1.02);
+}
+
+.logo-upload:focus {
+  outline: 2px solid rgba(255, 255, 255, .5);
+  outline-offset: 2px;
+}
+
+/* Logo image with proper sizing and aspect ratio maintenance */
+.logo-upload .logo-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* Maintain aspect ratio, fit within bounds */
+  border-radius: 16px;
+  padding: 4px;
+  /* Add padding so logo doesn't touch edges */
+}
+
+.logo-placeholder {
+  font-size: var(--font-size-xl);
+  opacity: .95;
+  pointer-events: none;
+  font-family: var(--font-family);
+}
+
+/* Clear button for logo */
+.logo-clear {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, .6);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, .2);
+  line-height: 20px;
+  text-align: center;
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  transition: all 0.2s ease;
+  font-size: var(--font-size-base);
+  font-family: var(--font-family);
+}
+
+.logo-clear:hover {
+  background: rgba(220, 38, 38, .85);
+  transform: scale(1.1);
+}
+
+.logo-clear:focus {
+  outline: 2px solid rgba(255, 255, 255, .8);
+  outline-offset: 1px;
+}
+
+/* Invoice number pill aligned tightly; label and number share the same baseline */
+.invoice-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, .18);
+  border-radius: 999px;
+  height: 35px;
+  /* fixed height to align content perfectly */
+  padding: 0 18px;
+  border: 1px solid rgba(255, 255, 255, .35);
+  align-self: end;
+  margin-left: auto;
+  color: #fff;
+  font-family: var(--font-family);
+}
+
+
+
+/* lock identical typography so there is no vertical drift */
+.inv-label,
+.inv-number-field .hash,
+.invoice-card .inv-number-input input.e-input {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-tight);
+  font-weight: var(--font-weight-bold);
+  color: #fff;
+  font-family: var(--font-family);
+  letter-spacing: .30px;
+}
+
+.inv-label {
+  display: inline-block;
+  margin-top: 2px;
+}
+
+/* hash + text input live together with perfect centering */
+.inv-number-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  position: relative;
+  transform: none;
+  font-family: var(--font-family);
+}
+
+
+/* underline only under the number, starting just after the hash */
+.inv-number-field::after {
+  content: "";
+  position: absolute;
+  left: 1px;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: #fff;
+  opacity: .95;
+  border-radius: 2px;
+}
+
+/* Strip default EJ2 input chrome for the inline number input */
+.invoice-card .inv-number-input.e-input-group,
+.invoice-card .inv-number-input.e-control-wrapper {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+  width: auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  height: auto !important;
+}
+
+/* Remove EJ2 focus underline (red/purple accent) */
+.invoice-card .inv-number-input.e-input-group:before,
+.invoice-card .inv-number-input.e-input-group:after,
+.invoice-card .inv-number-input.e-input-group.e-input-focus:before,
+.invoice-card .inv-number-input.e-input-group.e-input-focus:after,
+.invoice-card .inv-number-input.e-control-wrapper:before,
+.invoice-card .inv-number-input.e-control-wrapper:after,
+.invoice-card .inv-number-input.e-control-wrapper.e-input-focus:before,
+.invoice-card .inv-number-input.e-control-wrapper.e-input-focus:after {
+  display: none !important;
+}
+
+/* Ensure the input text sits centered with no extra padding/margins */
+.invoice-card .inv-number-input input.e-input {
+  color: #fff !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-weight: var(--font-weight-bold) !important;
+  width: 110px;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: var(--line-height-tight) !important;
+  height: auto !important;
+  position: static;
+  font-family: var(--font-family) !important;
+}
+
+.invoice-card .inv-number-input input.e-input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.invoice-card .inv-number-input .e-clear-icon {
+  display: none !important;
+}
+
+/* =====================
+   Invoice Number Autocomplete Fix
+   ===================== */
+
+/* Force white color for autocomplete selected values */
+.invoice-card .inv-number-input input.e-input:-webkit-autofill,
+.invoice-card .inv-number-input input.e-input:-webkit-autofill:hover,
+.invoice-card .inv-number-input input.e-input:-webkit-autofill:focus,
+.invoice-card .inv-number-input input.e-input:-webkit-autofill:active {
+  -webkit-text-fill-color: #fff !important;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+  transition: background-color 5000s ease-in-out 0s;
+  color: #fff !important;
+  caret-color: #fff !important;
+}
+
+/* Force white color for all states of the invoice input */
+.invoice-card .inv-number-input input.e-input,
+.invoice-card .inv-number-input input.e-input:focus,
+.invoice-card .inv-number-input input.e-input:active,
+.invoice-card .inv-number-input input.e-input[value] {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  caret-color: #fff !important;
+}
+
+/* Ensure Syncfusion AutoComplete doesn't override the color */
+.invoice-card .inv-number-input.e-autocomplete input.e-input,
+.invoice-card .inv-number-input.e-autocomplete.e-input-group input.e-input,
+.invoice-card .inv-number-input.e-autocomplete.e-control-wrapper input.e-input {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  caret-color: #fff !important;
+}
+
+/* Override any AutoComplete value selection styling */
+.invoice-card .inv-number-input .e-input-group.e-control-wrapper.e-autocomplete input.e-input {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  caret-color: #fff !important;
+}
+
+/* Specific fix for when AutoComplete sets the value */
+.invoice-card .inv-number-input input[type="text"].e-input {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  background-color: transparent !important;
+  caret-color: #fff !important;
+
+}
+
+/* Status segmented control exactly like mock */
+.status-row {
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+  font-family: var(--font-family);
+}
+
+.status-seg {
+  background: rgba(255, 255, 255, .18);
+  border-radius: 999px;
+  display: flex;
+  padding: 4px;
+  gap: 4px;
+  border: 1px solid rgba(255, 255, 255, .25);
+  font-family: var(--font-family);
+}
+
+.seg-btn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: #dcd6ff;
+  font-weight: var(--font-weight-bold);
+  padding: 8px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  font-family: var(--font-family);
+  letter-spacing: .35px
+}
+
+.seg-btn.active {
+  background: rgba(255, 255, 255, .28);
+  color: #ffffff;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .35);
+}
+
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  font-family: var(--font-family);
+}
+
+/* Panels are now blended into the page (no separate rounded boxes) */
+.panel {
+  background: transparent;
+  border-radius: 0;
+  padding: var(--space-4);
+  box-shadow: none;
+}
+
+/* field error visuals */
+.field-wrap {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-family);
+}
+
+.field-error {
+  color: red;
+  font-size: var(--font-size-xs);
+  margin-top: 2px;
+  font-family: var(--font-family);
+}
+
+.has-error,
+.has-error.e-input-group,
+.has-error.e-control-wrapper {
+  border-color: #e21717 !important;
+  box-shadow: 0 0 0 1px rgba(239, 68, 68, .25) inset !important;
+}
+
+.panel-title {
+  color: var(--color);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-4);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  letter-spacing: .40px;
+}
+
+/* Provide consistent vertical spacing between inputs inside panels */
+.panel>.e-input-group,
+.panel>.e-control-wrapper,
+.panel>.grid-2,
+/* .panel > textarea.e-input { margin-top: var(--space-2); } */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  font-family: var(--font-family);
+}
+
+.meta-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--space-6);
+  font-family: var(--font-family);
+  width: 100%;
+}
+
+.meta-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  font-family: var(--font-family);
+  width: 100%;
+}
+
+.meta-field .label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 4px;
+  font-family: var(--font-family);
+  letter-spacing: .30px
+}
+
+.meta-field .e-input-group,
+.meta-field .e-dropdownlist {
+  width: 100% !important;
+}
+
+/* Items section blends with page; keep inner grid styling */
+.items-section {
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  font-family: var(--font-family);
+}
+
+.section-title {
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  margin-bottom: var(--space-3);
+  letter-spacing: .40px;
+}
+
+/* Items header with title on left and Add button on right */
+.items-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: var(--space-3);
+  font-family: var(--font-family);
+}
+
+.items-header .section-title {
+  margin: 0;
+}
+
+/* Grid styling inside items section */
+.items-section .e-grid {
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  font-family: var(--font-family);
+}
+
+.items-section .e-grid .e-gridheader {
+  background: var(--gray-100);
+  border-radius: 0;
+}
+
+.items-section .e-grid .e-headercell {
+  background: transparent;
+  color: var(--gray-500);
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-family);
+}
+
+.items-section .e-grid .e-rowcell {
+  background: transparent;
+  font-weight: var(--font-weight-medium);
+  padding: 4px 8px;
+  vertical-align: middle;
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+}
+
+/* Ensure numeric inputs align with their column headers */
+.items-section .e-grid .e-rowcell .e-numeric .e-input {
+  text-align: right;
+}
+
+/* Center the Quantity (2nd column) values */
+.items-section .e-grid .e-rowcell:nth-child(2) .e-numeric .e-input {
+  text-align: center !important;
+}
+
+/* Make controls fill the cell width and center vertically */
+.items-section .e-grid .e-control-wrapper,
+.items-section .e-grid .e-input-group {
+  height: 42px;
+  padding: 0 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border: none !important;
+  /* Remove all borders */
+  border-radius: 0 !important;
+  /* Remove rounded corners */
+  background: transparent !important;
+  /* Make background transparent */
+}
+
+/* Remove borders on focus state as well */
+.items-section .e-grid .e-input-group.e-input-focus,
+.items-section .e-grid .e-control-wrapper.e-input-focus {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove borders from all input elements inside the grid */
+.items-section .e-grid .e-control-wrapper input.e-input,
+.items-section .e-grid .e-input-group input.e-input {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+
+.mono-amount {
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--font-weight-semibold);
+  text-align: right;
+  font-family: var(--font-family);
+}
+
+.tax-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-family);
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  font-family: var(--font-family);
+}
+
+.summary-card .summary-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 8px 0;
+}
+
+.summary-card .summary-total {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid var(--gray-300);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--brand-600);
+  font-family: var(--font-family);
+}
+
+.summary-card .amount {
+  color: var(--brand-600);
+  font-family: var(--font-family);
+}
+
+/* Attachments section also blended */
+.attachments {
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  font-family: var(--font-family);
+}
+
+/* Make uploader clickable across full area and keep native input accessible */
+.attach-uploader.e-upload {
+  width: 100%;
+}
+
+.attach-uploader.e-upload .e-file-select-wrap .e-btn {
+  background: transparent;
+  border-color: #e2e8f0;
+}
+
+.attach-uploader.e-upload input[type="file"] {
+  cursor: pointer;
+}
+
+/* Soft rounded inputs to match mock with more rounded borders */
+.app-container .e-input-group,
+.app-container .e-control-wrapper {
+  background: #fff;
+  border-radius: 24px;
+  padding: 12px 16px;
+  border: 1px solid #e2e8f0;
+}
+
+/* Remove underline/pseudo focus bars from all Syncfusion Material inputs inside app */
+.app-container .e-input-group:before,
+.app-container .e-input-group:after,
+.app-container .e-input-group.e-input-focus:before,
+.app-container .e-input-group.e-input-focus:after,
+.app-container .e-control-wrapper:before,
+.app-container .e-control-wrapper:after,
+.app-container .e-control-wrapper.e-input-focus:before,
+.app-container .e-control-wrapper.e-input-focus:after {
+  display: none !important;
+  content: none !important;
+}
+
+.app-container .e-input-group input.e-input,
+.app-container .e-control-wrapper input.e-input {
+  background: transparent;
+  box-shadow: none !important;
+}
+
+.app-container .e-input-group.e-multi-line {
+  padding: 14px 16px;
+  border-radius: 24px;
+}
+
+.app-container textarea.e-input {
+  background: transparent;
+  box-shadow: none !important;
+  resize: none !important;
+
+}
+
+/* Date/Dropdown spacing like screenshot */
+.meta-row .e-control-wrapper {
+  height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.meta-row .e-input-group {
+  height: 44px;
+}
+
+/* Footer actions: tighter spacing between buttons */
+.footer-actions {
+  display: flex;
+  gap: var(--space-2);
+  /* 8px (reduced from 16px) */
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  padding-right: var(--space-4);
+  font-family: var(--font-family);
+}
+
+/* Keep all three footer icons visually consistent */
+.footer-actions .e-btn .e-icons {
+  font-size: 16px;
+  /* same size as the others */
+  line-height: 1;
+}
+
+/* Force "outlined" style for Material theme and remove underlines everywhere */
+.app-container .e-input-group,
+.app-container .e-float-input,
+.app-container .e-control-wrapper {
+  border: 1px solid #e2e8f0 !important;
+  /* full outline, not just underline */
+  border-radius: 24px !important;
+  box-shadow: none !important;
+  background: #fff !important;
+}
+
+/* some EJ2 inputs apply only border-bottom; normalize all sides */
+.app-container .e-input-group {
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+.app-container .e-float-input {
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+/* Kill Material underline pseudo-elements */
+.app-container .e-input-group:before,
+.app-container .e-input-group:after,
+.app-container .e-input-group.e-input-focus:before,
+.app-container .e-input-group.e-input-focus:after,
+.app-container .e-control-wrapper:before,
+.app-container .e-control-wrapper:after,
+.app-container .e-control-wrapper.e-input-focus:before,
+.app-container .e-control-wrapper.e-input-focus:after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Kill float-line (actual DOM span used by some controls) */
+.app-container .e-float-input .e-float-line,
+.app-container .e-float-input.e-control-wrapper .e-float-line,
+.app-container .e-float-input.e-input-focus .e-float-line,
+.app-container .e-input-group .e-input-in-wrap::before,
+.app-container .e-input-group .e-input-in-wrap::after {
+  display: none !important;
+}
+
+/* Inputs padding and rounded look */
+.app-container .e-input-group input.e-input,
+.app-container .e-control-wrapper input.e-input,
+.app-container .e-input-group textarea.e-input {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+/* keep border on focus, avoid underline style */
+.app-container .e-input-group.e-input-focus,
+.app-container .e-control-wrapper.e-input-focus {
+  border-color: #cbd5e1 !important;
+  box-shadow: none !important;
+}
+
+.app-container .e-input-group:not(.e-success):not(.e-warning):not(.e-error) {
+  border-color: #e2e8f0 !important;
+}
+
+/* Dropdown and DatePicker specific tweaks */
+.app-container .e-dropdownlist.e-control-wrapper,
+.app-container .e-datepicker.e-control-wrapper,
+.app-container .e-numeric.e-control-wrapper {
+  padding: 0 14px !important;
+}
+
+.app-container .e-dropdownlist .e-input,
+.app-container .e-datepicker .e-input,
+.app-container .e-numeric .e-input {
+  height: 40px !important;
+}
+
+/* Increase height for address textareas in the From/To panels */
+.form-grid .e-input-group.e-multi-line {
+  min-height: 80px;
+}
+
+.form-grid textarea.e-input {
+  height: 80px !important;
+  line-height: 1.4;
+}
+
+/* Increase height for Notes and Terms & Conditions textareas */
+.two-col .panel .e-input-group.e-multi-line {
+  min-height: 80px;
+}
+
+.two-col .panel textarea.e-input {
+  height: 80px !important;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+
+  .form-grid,
+  .two-col {
+    grid-template-columns: 1fr;
+  }
+
+  .meta-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* =====================
+   Reference-style cards
+   ===================== */
+/* Make generic panels look like light cards (used by Additional Information) */
+.panel {
+  background: var(--gray-50);
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: var(--space-6);
+  font-family: var(--font-family);
+}
+
+.panel textarea.e-input {
+  line-height: var(--line-height-relaxed);
+  font-family: var(--font-family);
+}
+
+/* =====================
+   Items table polish
+   ===================== */
+
+.items-section .e-grid {
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Remove heavy focus outline/highlight on grid cells and editors; keep only subtle border change */
+.items-section .e-grid .e-rowcell:focus,
+.items-section .e-grid .e-rowcell.e-focused,
+.items-section .e-grid .e-focus,
+.items-section .e-grid .e-focused,
+.items-section .e-grid .e-gridcontent .e-table td.e-focused,
+.items-section .e-grid .e-gridcontent .e-table td:focus,
+.items-section .e-grid .e-gridcontent .e-table .e-input-group:focus,
+.items-section .e-grid .e-gridcontent .e-table .e-control-wrapper:focus,
+.items-section .e-grid .e-gridcontent .e-table .e-input-group.e-input-focus,
+.items-section .e-grid .e-gridcontent .e-table .e-control-wrapper.e-input-focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Also suppress any focus-visible outline on inputs inside cells */
+.items-section .e-grid input:focus,
+.items-section .e-grid input:focus-visible,
+.items-section .e-grid textarea:focus,
+.items-section .e-grid select:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Keep a subtle but visible highlight only on focused editors */
+.items-section .e-grid .e-control-wrapper,
+.items-section .e-grid .e-input-group {
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.items-section .e-grid .e-input-group.e-input-focus,
+.items-section .e-grid .e-control-wrapper.e-input-focus {
+  border-color: var(--brand-500) !important;
+  /* slightly stronger */
+  box-shadow: inset 0 0 0 2px rgba(124, 58, 237, .15) !important;
+  /* faint inner ring */
+}
+
+/* When typing inside, keep the same subtle focus (targets native focus on the input) */
+.items-section .e-grid .e-control-wrapper input.e-input:focus,
+.items-section .e-grid .e-input-group input.e-input:focus {
+  outline: none !important;
+}
+
+.items-section .e-grid .e-gridheader,
+.items-section .e-grid .e-headercontent,
+.items-section .e-grid .e-gridheader table,
+.items-section .e-grid .e-gridheader th {
+  background: var(--brand-600) !important;
+}
+
+.items-section .e-grid .e-headercell,
+.items-section .e-grid .e-gridheader th {
+  font-weight: var(--font-weight-semibold);
+  color: #ffffff !important;
+  font-family: var(--font-family);
+  padding: 8px !important;
+  height: 32px !important;
+  vertical-align: middle !important;
+  line-height: 1.2 !important;
+}
+
+/* Ensure header text is visible regardless of theme overrides */
+.items-section .e-grid .e-gridheader .e-headercelldiv,
+.items-section .e-grid .e-headercontent .e-headercelldiv,
+.items-section .e-grid .e-headercell .e-headertext {
+  color: #ffffff !important;
+  opacity: 1 !important;
+  display: inline-block;
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: .38px
+}
+
+.items-section .e-grid .e-gridheader .e-headercelldiv {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family);
+}
+
+/* Center the Qty column header */
+.items-section .e-grid .e-gridheader th:nth-child(2) .e-headercelldiv {
+  text-align: left !important;
+  width: 100%;
+  display: block;
+}
+
+/* Safety: if any header cell has e-hide, show it */
+.items-section .e-grid .e-gridheader .e-hide {
+  display: none !important;
+}
+
+.items-section .e-grid .e-gridheader,
+.items-section .e-grid .e-headercontent {
+  min-height: 32px !important;
+}
+
+.items-section .e-grid .e-gridheader .e-headercelldiv {
+  line-height: 1.2 !important;
+  padding: 0 !important;
+}
+
+/* Last resort in case theme applies visibility hidden */
+.items-section .e-grid .e-gridheader *,
+.items-section .e-grid .e-headercontent * {
+  visibility: visible !important;
+}
+
+.items-section .e-grid .e-rowcell .e-input {
+  height: 36px;
+  font-family: var(--font-family);
+}
+
+/* Right align currency/amount column */
+.items-section .e-grid .e-rowcell.mono-amount,
+.items-section .e-grid .e-rowcell.amount,
+.mono-amount {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-family);
+}
+
+/* Tax checkbox + label inline */
+.tax-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-family);
+}
+
+/* Keep checkbox+rate visually centered within the Tax column */
+.e-rowcell .tax-cell {
+  justify-content: center;
+  width: 100%;
+}
+
+.tax-rate-mini.e-control-wrapper {
+  width: 56px;
+  padding: 0 6px !important;
+  height: 32px;
+}
+
+.tax-rate-mini .e-input {
+  text-align: center;
+  height: 28px !important;
+  font-family: var(--font-family);
+}
+
+.tax-cell .e-checkbox-wrapper .e-label {
+  color: #334155;
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+}
+
+
+
+.footer-actions .e-btn,
+.footer-actions button {
+  padding: 8px 12px;
+  border-radius: 999px !important;
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-sm);
+  letter-spacing: .40px
+}
+
+.footer-actions .e-btn.e-primary {
+  background: var(--brand-600) !important;
+  border-color: var(--brand-600) !important;
+  min-width: 0 !important;
+}
+
+
+
+/* =====================
+   Invoice summary card
+   ===================== */
+.summary-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 12px 14px;
+  /* compact padding to reduce extra space */
+  box-shadow: var(--shadow-md);
+  font-family: var(--font-family);
+}
+
+.summary-card .summary-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  padding: 6px 0;
+  gap: 10px;
+  font-family: var(--font-family);
+  min-width: 0;
+  letter-spacing: .35px;
+  font-size: var(--font-size-sm);
+}
+
+.summary-card .summary-row> :last-child {
+  justify-self: end;
+  min-width: 0;
+}
+
+.summary-card .summary-row>span.amount {
+  justify-self: end;
+  min-width: 0;
+  display: inline-block;
+  text-align: right;
+  padding-right: 14px;
+  box-sizing: border-box;
+  white-space: nowrap !important;
+  overflow: visible;
+  letter-spacing: .30px;
+}
+
+.summary-card .label {
+  color: #475569;
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+}
+
+/* Right-align both numeric input text and amounts */
+.summary-card .amount,
+.summary-card .e-input-group input.e-input,
+.summary-card .e-control-wrapper input.e-input {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-family: var(--font-family);
+  white-space: nowrap !important;
+}
+
+.summary-card .e-control-wrapper,
+.summary-card .e-input-group {
+  width: 160px;
+  justify-self: end;
+}
+
+/* Emphasize total amount value */
+.summary-card .summary-total .amount {
+  color: var(--brand-700);
+  font-size: var(--font-size-lg);
+  padding-right: 12px;
+  font-family: var(--font-family);
+  min-width: 0;
+  white-space: nowrap !important;
+  overflow: visible;
+  text-align: right;
+  display: inline-block;
+}
+
+/* Compact input height to shrink card */
+.summary-card .e-input-group,
+.summary-card .e-control-wrapper {
+  height: 36px;
+  padding: 4px 14px;
+  border-radius: 10px;
+}
+
+.summary-card .summary-total {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--gray-300);
+  font-weight: var(--font-weight-black);
+  color: var(--brand-700);
+  font-size: var(--font-size-lg);
+  font-family: var(--font-family);
+}
+
+.summary-card .summary-total .value {
+  color: var(--brand-700);
+  font-size: var(--font-size-xl);
+  font-family: var(--font-family);
+  white-space: nowrap !important;
+}
+
+/* Ensure Additional Info + Summary split looks balanced */
+.two-col {
+  align-items: start;
+}
+
+.two-col .panel {
+  height: auto;
+}
+
+/* Ensure Syncfusion popups and dialogs appear above modal overlays (preview) */
+.e-popup,
+.e-dialog,
+.e-dialog-modal,
+.e-popup-open {
+  z-index: 11000 !important;
+}
+
+/* Neutralize browser autofill overlay (Chrome/Edge) so suggestions don't paint over text */
+.app-container input:-webkit-autofill,
+.app-container input:-webkit-autofill:hover,
+.app-container input:-webkit-autofill:focus,
+.app-container textarea:-webkit-autofill,
+.app-container select:-webkit-autofill {
+  -webkit-text-fill-color: inherit;
+  transition: background-color 9999s ease-out 0s;
+  box-shadow: 0 0 0px 1000px transparent inset !important;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+  background-clip: padding-box;
+}
+
+/* Also ensure our inputs always keep a transparent background while typing */
+.app-container .e-input-group input.e-input,
+.app-container .e-control-wrapper input.e-input,
+.app-container textarea.e-input {
+  background-color: transparent !important;
+}
+
+/* =====================
+   Tax checkbox + Delete button colors
+   ===================== */
+/* Taxable checkbox: use brand purple for checked state */
+.items-section .e-grid .col-tax .e-checkbox-wrapper .e-frame {
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+  border-color: #cbd5e1;
+  background: #fff;
+}
+
+.items-section .e-grid .col-tax .e-checkbox-wrapper .e-frame.e-check {
+  background: var(--brand-600) !important;
+  border-color: var(--brand-600) !important;
+}
+
+.items-section .e-grid .col-tax .e-checkbox-wrapper .e-frame.e-check::before {
+  color: #fff !important;
+  /* white tick */
+}
+
+.items-section .e-grid .col-tax .e-checkbox-wrapper input:focus+.e-frame {
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, .25);
+  border-color: var(--brand-500);
+}
+
+/* Delete action button: standard danger red */
+.items-section .col-action .e-btn.e-danger {
+  background: transparent !important;
+  border-color: transparent !important;
+  border: none !important;
+  color: inherit !important;
+  /* icon controls color */
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family);
+}
+
+.items-section .col-action .e-btn.e-danger:hover,
+.items-section .col-action .e-btn.e-danger:focus {
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.items-section .col-action .e-btn.e-danger .e-icons {
+  color: var(--danger-600) !important;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.items-section .col-action .e-btn.e-danger:hover .e-icons {
+  color: var(--danger-700) !important;
+}
+
+.items-section .col-action .e-btn.e-danger,
+.items-section .col-action .e-btn.e-danger.e-flat,
+.items-section .col-action .e-btn.e-danger.e-round,
+.items-section .col-action .e-btn.e-danger.e-icon-btn {
+  background: none !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  min-width: 0 !important;
+  border-radius: 0 !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.items-section .col-action .e-btn.e-danger:hover,
+.items-section .col-action .e-btn.e-danger:focus,
+.items-section .col-action .e-btn.e-danger:active {
+  background: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+
+.items-section .col-action .e-btn.e-danger:hover .e-icons,
+.items-section .col-action .e-btn.e-danger:active .e-icons,
+.items-section .col-action .e-btn.e-danger:focus .e-icons {
+  color: var(--danger-700) !important;
+}
+
+/* =====================
+   Text Selection - Blue Theme
+   ===================== */
+::selection {
+  background: var(--primary-blue) !important;
+  color: #ffffff !important;
+}
+
+::-moz-selection {
+  background: var(--primary-blue) !important;
+  color: #ffffff !important;
+}
+
+/* =====================
+   DatePicker - Blue Theme
+   ===================== */
+/* Selected date background */
+
+
+
+/* =====================
+   DatePicker - Blue Theme
+   ===================== */
+/* Selected date background */
+
+.e-datepicker .e-calendar .e-selected span.e-day,
+.e-datepicker .e-calendar .e-focused-date.e-selected span.e-day {
+  background: var(--primary-blue) !important;
+  color: #ffffff !important;
+  border-color: var(--primary-blue) !important;
+}
+
+/* Hover state for dates */
+.e-datepicker .e-calendar .e-content td:hover span.e-day {
+  background: rgba(41, 112, 255, 0.1) !important;
+  color: var(--primary-blue) !important;
+}
+
+/* Today button - ALL variations */
+.e-datepicker .e-footer-container .e-today,
+.e-datepicker .e-footer-container .e-btn.e-today,
+.e-datepicker .e-footer-container button.e-today,
+.e-calendar .e-footer-container .e-today,
+.e-calendar .e-footer-container .e-btn.e-today,
+.e-calendar .e-footer-container button.e-today {
+  background: var(--primary-blue) !important;
+  background-color: var(--primary-blue) !important;
+  color: #ffffff !important;
+  font-weight: var(--font-weight-semibold) !important;
+  border-radius: 6px !important;
+  padding: 4px 12px !important;
+  border: none !important;
+}
+
+.e-datepicker .e-footer-container .e-today:hover,
+.e-datepicker .e-footer-container .e-btn.e-today:hover,
+.e-calendar .e-footer-container .e-today:hover,
+.e-calendar .e-footer-container .e-btn.e-today:hover {
+  background: rgba(41, 112, 255, 0.9) !important;
+  background-color: rgba(41, 112, 255, 0.9) !important;
+  color: #ffffff !important;
+}
+
+/* Calendar Icon - Change from pink to blue */
+.e-datepicker .e-input-group-icon.e-date-icon,
+.e-datepicker .e-input-group .e-input-group-icon.e-date-icon,
+.e-datepicker .e-control-wrapper .e-input-group-icon.e-date-icon,
+.e-date-icon::before,
+.e-input-group-icon.e-date-icon::before {
+  color: #64748b !important;
+  /* gray-500 */
+  transition: color 0.2s ease;
+}
+
+.e-datepicker.e-input-focus .e-input-group-icon.e-date-icon,
+.e-datepicker.e-input-focus .e-input-group .e-input-group-icon.e-date-icon,
+.e-datepicker.e-input-focus .e-control-wrapper .e-input-group-icon.e-date-icon,
+.e-datepicker.e-input-focus .e-date-icon::before,
+.e-datepicker.e-input-focus .e-input-group-icon.e-date-icon::before,
+.e-input-group.e-input-focus .e-date-icon::before,
+.e-control-wrapper.e-input-focus .e-date-icon::before {
+  color: var(--primary-blue) !important;
+}
+
+/* Calendar icon hover state */
+.e-datepicker .e-input-group-icon.e-date-icon:hover,
+.e-date-icon:hover::before {
+  color: rgba(41, 112, 255, 0.8) !important;
+}
+
+/* Focus ring on date cells */
+.e-datepicker .e-calendar .e-focused-date span.e-day {
+  box-shadow: 0 0 0 2px rgba(41, 112, 255, 0.3) !important;
+}
+
+/* Header navigation arrows hover */
+.e-datepicker .e-calendar .e-header .e-prev:hover,
+.e-datepicker .e-calendar .e-header .e-next:hover,
+.e-datepicker .e-calendar .e-header .e-icon-container:hover {
+  background: rgba(41, 112, 255, 0.1) !important;
+  color: var(--primary-blue) !important;
+}
+
+/* Current month/year title hover */
+.e-datepicker .e-calendar .e-header .e-title:hover {
+  color: var(--primary-blue) !important;
+}
+
+/* Range selection (if used) */
+.e-datepicker .e-calendar .e-range-hover span.e-day {
+  background: rgba(41, 112, 255, 0.1) !important;
+}
+
+/* Current date (today) circle indicator */
+.e-datepicker .e-calendar .e-today span.e-day {
+  border: 1px solid var(--primary-blue) !important;
+  color: var(--primary-blue) !important;
+}
+
+
+/* =====================
+   Checkbox - Purple with White Tick (Global)
+   ===================== */
+/* Unchecked state */
+.e-checkbox-wrapper .e-frame {
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+  border-color: #cbd5e1;
+  background: #fff;
+  transition: all 0.2s ease;
+}
+
+/* Checked state - Purple background with white tick */
+.e-checkbox-wrapper .e-frame.e-check {
+  background: var(--brand-600) !important;
+  border-color: var(--brand-600) !important;
+}
+
+.e-checkbox-wrapper .e-frame.e-check::before {
+  color: #ffffff !important;
+}
+
+/* Hover state */
+.e-checkbox-wrapper .e-frame:hover {
+  border-color: var(--brand-500);
+}
+
+/* Focus state */
+.e-checkbox-wrapper input:focus+.e-frame {
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.25) !important;
+  border-color: var(--brand-500) !important;
+}
+
+/* Disabled state */
+.e-checkbox-wrapper input:disabled+.e-frame {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* =====================
+   Tax checkbox + Delete button colors
+   ===================== */
+/* Taxable checkbox: use brand purple for checked state */
+.items-section .e-grid .col-tax .e-checkbox-wrapper .e-frame {
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+  border-color: #cbd5e1;
+  background: #fff;
+}
+
+/* Items section checkboxes inherit global styles, no need to repeat */
+.items-section .e-grid .col-tax .e-checkbox-wrapper .e-frame.e-check {
+  background: var(--brand-600) !important;
+  border-color: var(--brand-600) !important;
+}
+
+.items-section .e-grid .col-tax .e-checkbox-wrapper .e-frame.e-check::before {
+  color: #fff !important;
+  /* white tick */
+}
+
+.items-section .e-grid .col-tax .e-checkbox-wrapper input:focus+.e-frame {
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, .25);
+  border-color: var(--brand-500);
+}
+
+
+/* =====================
+   COMPREHENSIVE BUTTON SYSTEM
+   ===================== */
+
+/* BASE BUTTON STYLES */
+.e-btn,
+button {
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-sm);
+  border: none;
+  border-radius: 999px;
+  padding: 8px 16px;
+  min-width: 0 !important;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* PRIMARY BUTTON (Brand Purple) */
+.e-btn.e-primary,
+button.e-primary,
+.e-primary {
+  color: #ffffff !important;
+  border-color: var(--brand-600) !important;
+}
+
+
+.e-btn.e-primary:active,
+button.e-primary:active,
+.e-primary:active {
+  background: transparent !important;
+
+}
+
+.e-btn.e-primary:disabled,
+button.e-primary:disabled,
+.e-primary:disabled {
+  background: #cbd5e1 !important;
+  border-color: #cbd5e1 !important;
+  color: #94a3b8 !important;
+  cursor: not-allowed;
+  opacity: 0.6;
+  box-shadow: none;
+  transform: none;
+}
+
+/* DANGER BUTTON (Red) */
+.e-btn.e-danger,
+button.e-danger,
+.e-danger {
+  background: var(--danger-600) !important;
+  color: #ffffff !important;
+  border-color: var(--danger-600) !important;
+  box-shadow: var(--shadow-md);
+}
+
+.e-btn.e-danger:hover,
+button.e-danger:hover,
+.e-danger:hover {
+  background: var(--danger-700) !important;
+  border-color: var(--danger-700) !important;
+  box-shadow: 0 8px 20px rgba(220, 38, 38, 0.25) !important;
+  transform: translateY(-1px);
+}
+
+.e-btn.e-danger:active,
+button.e-danger:active,
+.e-danger:active {
+  background: var(--danger-700) !important;
+  border-color: var(--danger-700) !important;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  transform: translateY(0);
+}
+
+.e-btn.e-danger:focus,
+button.e-danger:focus,
+.e-danger:focus {
+  outline: 2px solid var(--danger-500);
+  outline-offset: 2px;
+  box-shadow: var(--shadow-md);
+}
+
+.e-btn.e-danger:disabled,
+button.e-danger:disabled,
+.e-danger:disabled {
+  background: #cbd5e1 !important;
+  border-color: #cbd5e1 !important;
+  color: #94a3b8 !important;
+  cursor: not-allowed;
+  opacity: 0.6;
+  box-shadow: none;
+  transform: none;
+}
+
+/* SECONDARY/OUTLINE BUTTON */
+.e-btn.e-outline,
+button.e-outline,
+.e-outline {
+  background: transparent !important;
+  color: var(--brand-600) !important;
+  border: 1px solid var(--brand-600) !important;
+  box-shadow: none;
+}
+
+.e-btn.e-outline:hover,
+button.e-outline:hover,
+.e-outline:hover {
+  background: rgba(109, 40, 217, 0.08) !important;
+  border-color: var(--brand-700) !important;
+  color: var(--brand-700) !important;
+}
+
+.e-btn.e-outline:active,
+button.e-outline:active,
+.e-outline:active {
+  background: rgba(109, 40, 217, 0.15) !important;
+  border-color: var(--brand-700) !important;
+}
+
+.e-btn.e-outline:disabled,
+button.e-outline:disabled,
+.e-outline:disabled {
+  background: transparent !important;
+  border-color: #cbd5e1 !important;
+  color: #94a3b8 !important;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ICON BUTTON (for delete, close, etc.) */
+.e-btn.e-icon-btn,
+button.e-icon-btn,
+.e-icon-btn {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 8px !important;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #475569;
+}
+
+.e-btn.e-icon-btn:hover,
+button.e-icon-btn:hover,
+.e-icon-btn:hover {
+  background: rgba(0, 0, 0, 0.05) !important;
+  color: #1e293b;
+}
+
+.e-btn.e-icon-btn:active,
+button.e-icon-btn:active,
+.e-icon-btn:active {
+  background: rgba(0, 0, 0, 0.1) !important;
+}
+
+.e-btn.e-icon-btn:focus,
+button.e-icon-btn:focus,
+.e-icon-btn:focus {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 2px;
+}
+
+.e-btn.e-icon-btn:disabled,
+button.e-icon-btn:disabled,
+.e-icon-btn:disabled {
+  color: #cbd5e1 !important;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* ICON BUTTON DANGER VARIANT */
+.e-btn.e-icon-btn.e-danger,
+button.e-icon-btn.e-danger,
+.e-icon-btn.e-danger {
+  color: var(--danger-600);
+}
+
+.e-btn.e-icon-btn.e-danger:hover,
+button.e-icon-btn.e-danger:hover,
+.e-icon-btn.e-danger:hover {
+  background: rgba(220, 38, 38, 0.1) !important;
+  color: var(--danger-700) !important;
+}
+
+.e-btn.e-icon-btn.e-danger:active,
+button.e-icon-btn.e-danger:active,
+.e-icon-btn.e-danger:active {
+  background: rgba(220, 38, 38, 0.2) !important;
+}
+
+/* GHOST BUTTON (minimal) */
+.e-btn.e-ghost,
+button.e-ghost,
+.e-ghost {
+  background: transparent !important;
+  border: none !important;
+  color: var(--brand-600) !important;
+  box-shadow: none;
+}
+
+.e-btn.e-ghost:hover,
+button.e-ghost:hover,
+.e-ghost:hover {
+  background: rgba(109, 40, 217, 0.08) !important;
+  color: var(--brand-700) !important;
+}
+
+.e-btn.e-ghost:active,
+button.e-ghost:active,
+.e-ghost:active {
+  background: rgba(109, 40, 217, 0.15) !important;
+}
+
+.e-btn.e-ghost:focus,
+button.e-ghost:focus,
+.e-ghost:focus {
+  outline: 2px solid var(--brand-500);
+  outline-offset: 2px;
+}
+
+
+/* FOOTER ACTIONS BUTTONS */
+.footer-actions .e-btn,
+.footer-actions button {
+  padding: 8px 16px;
+  border-radius: 999px !important;
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-sm);
+}
+
+
+footer-actions .e-btn.e-primary,
+.footer-actions button.e-primary,
+.footer-actions .e-btn.e-primary:hover,
+.footer-actions button.e-primary:hover,
+.footer-actions .e-btn.e-primary:focus,
+.footer-actions button.e-primary:focus,
+.footer-actions .e-btn.e-primary:active,
+.footer-actions button.e-primary:active {
+  box-shadow: none !important;
+  filter: none !important;
+  /* defensive: some themes add glow via filter */
+  outline: none !important;
+  /* keep outline off; you're already using brand focus styles elsewhere */
+}
+
+
+.footer-actions .e-btn.e-primary,
+.footer-actions button.e-primary {
+  background: var(--brand-600) !important;
+  color: #ffffff !important;
+  border-color: var(--brand-600) !important;
+}
+
+.footer-actions .e-btn.e-primary:hover,
+.footer-actions button.e-primary:hover {
+  background: var(--brand-700) !important;
+  border-color: var(--brand-700) !important;
+}
+
+.footer-actions .e-btn.e-primary:active,
+.footer-actions button.e-primary:active {
+  background: var(--brand-700) !important;
+}
+
+/* DELETE ACTION BUTTON IN GRID */
+.items-section .col-action .e-btn.e-danger {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 6px !important;
+  margin: 0 !important;
+  width: 30px !important;
+  height: 30px !important;
+  min-width: 0 !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.items-section .col-action .e-btn.e-danger .e-icons {
+  color: var(--danger-600) !important;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.items-section .col-action .e-btn.e-danger:hover {
+  background: rgba(220, 38, 38, 0.1) !important;
+}
+
+.items-section .col-action .e-btn.e-danger:hover .e-icons {
+  color: var(--danger-700) !important;
+}
+
+.items-section .col-action .e-btn.e-danger:active {
+  background: rgba(220, 38, 38, 0.2) !important;
+}
+
+.items-section .col-action .e-btn.e-danger:focus {
+  outline: 2px solid var(--danger-500);
+  outline-offset: 2px;
+}
+
+.items-section .col-action .e-btn.e-danger:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+
+/* =====================
+   Dropdown - Black/Gray Theme (Updated)
+   ===================== */
+/* Target dropdown popup at body level (where Syncfusion renders it) */
+.e-ddl.e-popup .e-list-item,
+.e-ddl.e-popup .e-list-item span,
+.e-popup .e-dropdownbase .e-list-item,
+.e-popup .e-dropdownbase .e-list-item span {
+  color: var(--color) !important;
+}
+
+/* Selected/focused item in dropdown popup */
+.e-ddl.e-popup .e-list-item.e-item-focus,
+.e-ddl.e-popup .e-list-item.e-active,
+.e-ddl.e-popup .e-list-item:hover,
+.e-popup .e-dropdownbase .e-list-item.e-item-focus,
+.e-popup .e-dropdownbase .e-list-item.e-active,
+.e-popup .e-dropdownbase .e-list-item:hover {
+  background: var(--gray-100) !important;
+  color: var(--color) !important;
+}
+
+/* Selected item in dropdown */
+.e-dropdownlist .e-list-item.e-item-focus,
+.e-dropdownlist .e-list-item.e-active,
+.e-dropdownlist .e-list-item:hover {
+  background: var(--gray-100) !important;
+  color: var(--color) !important;
+}
+
+/* Selected value text in the dropdown input field */
+.e-dropdownlist .e-input.e-control,
+.e-dropdownlist input.e-input,
+.e-dropdownlist .e-input-group input,
+.e-dropdownlist .e-control-wrapper input {
+  color: var(--color) !important;
+}
+
+/* Override any brand color on dropdown text */
+.e-dropdownlist .e-input-value,
+.e-dropdownlist .e-input-group .e-input-value {
+  color: var(--color) !important;
+}
+
+/* Dropdown focus border */
+.e-dropdownlist.e-input-focus .e-control-wrapper,
+.e-dropdownlist.e-input-focus.e-control-wrapper {
+  border-color: #94a3b8 !important;
+  box-shadow: inset 0 0 0 2px rgba(148, 163, 184, .15) !important;
+}
+
+/* Dropdown icon color */
+.e-dropdownlist .e-input-group-icon,
+.e-dropdownlist .e-ddl-icon {
+  color: #64748b !important;
+}
+
+/* Override Material theme's brand color on all dropdown list items */
+.e-list-item,
+.e-list-item span,
+.e-list-parent .e-list-item,
+.e-list-parent .e-list-item span {
+  color: var(--color) !important;
+}
+
+/* Ensure hover states also use black text */
+.e-list-item:hover,
+.e-list-item.e-hover,
+.e-list-item.e-active {
+  color: var(--color) !important;
+  background: var(--gray-100) !important;
+}
+
+/* Make selected dropdown item slightly bold */
+.e-list-item.e-active,
+.e-list-item.e-active span,
+.e-ddl.e-popup .e-list-item.e-active,
+.e-ddl.e-popup .e-list-item.e-active span,
+.e-popup .e-dropdownbase .e-list-item.e-active,
+.e-popup .e-dropdownbase .e-list-item.e-active span {
+  font-weight: var(--font-weight-semibold) !important;
+}
+
+
+/* Scope to the section containing the grid if you have one, otherwise use .e-grid root */
+.items-section .e-grid .e-headercell.col-desc .e-headercelldiv {
+  justify-content: flex-start !important;
+  /* override theme's center */
+  text-align: left !important;
+}
+
+/* Optional: ensure text hugs the left edge */
+.items-section .e-grid .e-headercell.col-desc .e-headertext {
+  margin-left: 0 !important;
+}
+
+
+/* Add these global overrides to index.css after existing rules to ensure they apply to all Syncfusion components */
+/* Target all input fields, textareas, and related wrappers */
+.e-input,
+.e-input input,
+.e-input-group,
+.e-input-group input.e-input,
+.e-input-group input.e-input::placeholder,
+.e-control-wrapper,
+.e-control-wrapper input.e-input,
+.e-control-wrapper input.e-input::placeholder,
+.e-numeric,
+.e-numeric input.e-input,
+.e-textbox,
+.e-textbox input.e-input,
+.e-autocomplete input.e-input,
+.e-autocomplete.e-control-wrapper input.e-input {
+  font-family: var(--font-family) !important;
+  font-size: var(--font-size-sm) !important;
+  letter-spacing: .30px
+}
+
+/* Target calendar/date picker components */
+.e-datepicker,
+.e-datepicker .e-input-group,
+.e-datepicker .e-input-group input.e-input,
+.e-datepicker .e-input-group input.e-input::placeholder,
+.e-datepicker .e-calendar,
+.e-datepicker .e-calendar .e-header,
+.e-datepicker .e-calendar .e-header .e-title,
+.e-datepicker .e-calendar .e-header .e-title:hover,
+.e-datepicker .e-calendar .e-content,
+.e-datepicker .e-calendar .e-content .e-cell,
+.e-datepicker .e-calendar .e-content .e-cell span.e-day,
+.e-datepicker .e-calendar .e-content .e-focused-date span.e-day,
+.e-datepicker .e-calendar .e-content .e-today span.e-day {
+  font-family: var(--font-family) !important;
+  font-size: var(--font-size-sm) !important;
+
+}
+
+/* Target dropdown and autocomplete components */
+.e-ddl,
+.e-ddl .e-input-group,
+.e-ddl .e-input-group input.e-input,
+.e-ddl .e-input-group input.e-input::placeholder,
+.e-dropdownlist,
+.e-dropdownlist .e-input-group input.e-input,
+.e-dropdownlist .e-input-group input.e-input::placeholder,
+.e-ddl.e-popup,
+.e-ddl.e-popup .e-list-item,
+.e-ddl.e-popup .e-list-item span,
+.e-popup .e-dropdownbase .e-list-item,
+.e-popup .e-dropdownbase .e-list-item span {
+  font-family: var(--font-family) !important;
+  font-size: var(--font-size-sm) !important;
+
+}
+
+/* Target grid components (including edit mode inputs) */
+.e-grid,
+.e-grid .e-gridheader,
+.e-grid .e-headercell,
+.e-grid .e-headertext,
+.e-grid .e-rowcell,
+.e-grid .e-rowcell input.e-input,
+.e-grid .e-rowcell .e-numeric input.e-input,
+.e-grid .e-rowcell .e-control-wrapper input.e-input,
+.e-grid .e-rowcell textarea {
+  font-family: var(--font-family) !important;
+  font-size: var(--font-size-sm) !important;
+}
+
+/* Ensure invoice number input specifically inherits (already partially covered, but reinforce) */
+.invoice-card .inv-number-input input.e-input,
+.invoice-card .inv-number-input input.e-input::placeholder,
+.invoice-card .inv-number-input.e-autocomplete input.e-input {
+  font-family: var(--font-family) !important;
+  font-size: var(--font-size-sm) !important;
+
+}
+
+/* Additional targets for any popup or overlay text */
+.e-popup,
+.e-popup .e-content,
+.e-toast,
+.e-toast .e-toast-message,
+.e-toast .e-toast-title,
+.e-toast .e-toast-content {
+  font-family: var(--font-family) !important;
+  font-size: var(--font-size-sm) !important;
+}
+
+
+.e-input-group input.e-input,
+.e-control-wrapper input.e-input,
+.e-numericwrapper input.e-input,
+.e-textbox input.e-input {
+  font-family: var(--font-family) !important;
+  font-size: var(--font-size-sm) !important;
+  letter-spacing: 0.30px !important;
+}
+
+/* 2. Multi-line TextBoxComponent (Notes, Terms & Conditions) */
+/* .e-multi-line textarea.e-input,
+textarea.e-input {
+  font-family: var(--font-family) !important;
+  font-size: var(--font-size-sm) !important;
+  letter-spacing: 0.40px !important;
+} */
+
+/* 3. DatePickerComponent / Date inputs */
+.e-datepicker .e-input-group input.e-input {
+  font-family: var(--font-family) !important;
+  font-size: var(--font-size-sm) !important;
+  letter-spacing: 0.40px !important;
+}
+
+/* 4. Grid edit mode inputs (description, rate, tax %, etc.) */
+.e-grid .e-rowcell input.e-input,
+.e-grid .e-edit-cell input.e-input,
+.e-grid .e-numericwrapper input.e-input {
+  font-family: var(--font-family) !important;
+  font-size: var(--font-size-sm) !important;
+  letter-spacing: 0.30px !important;
+}
+
+/* 5. Invoice number input in header (special case) */
+.invoice-card .inv-number-input input.e-input {
+  font-family: var(--font-family) !important;
+  font-size: var(--font-size-sm) !important;
+  letter-spacing: 0.40px !important;
+}
+
+/* 6. Dropdown / AutoComplete typed or selected text */
+.e-ddl .e-input-group input.e-input,
+.e-autocomplete input.e-input,
+.e-dropdownlist input.e-input {
+  font-family: var(--font-family) !important;
+  font-size: var(--font-size-sm) !important;
+  letter-spacing: 0.40px !important;
+}
+
+.e-popup .e-list-item,
+.e-ddl.e-popup .e-list-item {
+  font-family: var(--font-family) !important;
+  font-size: var(--font-size-sm) !important;
+  letter-spacing: 0.40px;
+}
+
+.e-upload .e-file-select-wrap .e-btn,
+.e-upload .e-upload-actions .e-btn {
+  font-family: var(--font-family) !important;
+  font-size: var(--font-size-sm) !important;
+  font-weight: var(--font-weight-regular);
+}
+
+.e-upload .e-file-select-wrap .e-file-drop {
+  font-family: var(--font-family) !important;
+  font-size: var(--font-size-sm) !important;
+}
+
+/* Grid toolbar: items can sit left and right */
+.e-grid .e-toolbar {
+  background: var(--gray-50) !important;
+  border-bottom: 1px solid var(--gray-300) !important;
+  padding: var(--space-2) var(--space-4) !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  height: 50px !important;
+}
+
+/* Make the actual items wrapper honor our grouping */
+.e-grid .e-toolbar .e-toolbar-items {
+  display: flex !important;
+  justify-content: flex-start !important;
+  /* left items start at the left edge */
+  align-items: center !important;
+  width: 100%;
+}
+
+/* Ensure the set of right-aligned items docks to the far-right */
+.e-grid .e-toolbar .e-toolbar-items .e-toolbar-right {
+  margin-left: auto !important;
+  /* pushes this group to the end */
+}
+
+/* Title style (unchanged) */
+.e-grid .e-toolbar .toolbar-title {
+  color: var(--color);
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  letter-spacing: .40px;
+}
+
+/* The spacer grows and pushes subsequent items (e.g., + ADD ITEM) to the far-right */
+.e-grid .e-toolbar .tbar-spacer {
+  flex: 1 1 auto !important;
+  min-width: 8px;
+}
+
+
+.e-grid .e-toolbar .e-toolbar-item,
+.e-grid .e-toolbar .e-tbar-btn,
+.e-grid .e-toolbar .e-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+.e-grid .e-toolbar .e-tbar-btn#addItem,
+.e-grid .e-toolbar #addItem {
+  background: var(--brand-600) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 999px !important;
+  padding: 8px 20px !important;
+  height: 36px !important;
+  font-weight: var(--font-weight-semibold) !important;
+  font-size: var(--font-size-sm) !important;
+  box-shadow: none !important;
+  transition: all 0.2s ease !important;
+  gap: 6px !important;
+}
+
+/* Style individual toolbar buttons (including built-in like ExcelExport) */
+.e-grid .e-toolbar .e-tbar-btn,
+.e-grid .e-toolbar .e-btn {
+  height: 32px !important;
+  /* Match reference height */
+  min-width: 120px !important;
+  /* Ensure sufficient width for text + icon */
+  padding: 6px 12px !important;
+  /* Vertical/horizontal padding for comfort */
+  border: 1px solid var(--gray-300) !important;
+  /* Subtle border like reference */
+  border-radius: 4px !important;
+  /* Rounded corners */
+  background: white !important;
+  /* White background for neutrality */
+  color: var(--gray-500) !important;
+  /* Text color */
+  font-size: var(--font-size-sm) !important;
+  font-weight: var(--font-weight-medium) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  /* Space between icon and text */
+  transition: all 0.2s ease !important;
+}
+
+/* Hover/focus states for interactivity */
+.e-grid .e-toolbar .e-tbar-btn:hover,
+.e-grid .e-toolbar .e-btn:hover,
+.e-grid .e-toolbar .e-tbar-btn:focus,
+.e-grid .e-toolbar .e-btn:focus {
+  background: var(--gray-100) !important;
+  border-color: var(--gray-500) !important;
+}
+
+/* Icon styling (ensure icons are visible and sized properly) */
+.e-grid .e-toolbar .e-icons {
+  font-size: 16px !important;
+  /* Larger icon for visibility */
+  color: var(--gray-500) !important;
+}
+
+/* Specific override for ExcelExport to ensure text is not truncated */
+.e-grid .e-toolbar .e-excelexport .e-tbar-btn-text {
+  white-space: nowrap !important;
+}
+
+/* =====================
+   Excel Export Button - Purple Outline Style (Matches App Theme)
+   ===================== */
+
+/* Target only the ExcelExport button in the items grid toolbar */
+.e-grid .e-toolbar .e-tbar-btn[id*="excelexport"],
+.e-grid .e-toolbar .e-btn.e-excelexport {
+  /* Use your existing outline button style */
+  background: transparent !important;
+  color: var(--brand-600) !important;
+  border: 1px solid var(--brand-600) !important;
+  border-radius: 999px !important;
+  /* pill shape like + ADD ITEM */
+  padding: 8px 16px !important;
+  /* comfortable size */
+  min-width: 140px !important;
+  /* wider than default */
+  height: 36px !important;
+  /* match Add Item height */
+  font-weight: var(--font-weight-semibold) !important;
+  font-size: var(--font-size-sm) !important;
+  box-shadow: none !important;
+  transition: all 0.2s ease !important;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+
+}
+
+/* Hover state - same as your .e-outline:hover */
+.e-grid .e-toolbar .e-tbar-btn[id*="excelexport"]:hover,
+.e-grid .e-toolbar .e-btn.e-excelexport:hover {
+  background: rgba(109, 40, 217, 0.08) !important;
+  border-color: var(--brand-700) !important;
+  color: var(--brand-700) !important;
+  transform: translateY(-1px);
+}
+
+/* Active / focus state */
+.e-grid .e-toolbar .e-tbar-btn[id*="excelexport"]:active,
+.e-grid .e-toolbar .e-btn.e-excelexport:active,
+.e-grid .e-toolbar .e-tbar-btn[id*="excelexport"]:focus,
+.e-grid .e-toolbar .e-btn.e-excelexport:focus {
+  background: rgba(109, 40, 217, 0.15) !important;
+  border-color: var(--brand-700) !important;
+  outline: 2px solid var(--brand-500);
+  outline-offset: 2px;
+}
+
+/* Icon color - use brand purple instead of default gray */
+.e-grid .e-toolbar .e-tbar-btn[id*="excelexport"] .e-icons,
+.e-grid .e-toolbar .e-btn.e-excelexport .e-icons {
+  color: var(--brand-600) !important;
+  font-size: 18px !important;
+}
+
+/* Make sure the text doesn't wrap */
+.e-grid .e-toolbar .e-excelexport .e-tbar-btn-text {
+  white-space: nowrap !important;
+}
+
+
+.e-grid .e-toolbar .e-tbar-btn#addItem:hover {
+  background: var(--brand-700) !important;
+  border-color: var(--brand-700) !important;
+
+}
+
+.e-grid .e-toolbar .e-tbar-btn.e-excelexport,
+.e-grid .e-toolbar .e-btn.e-excelexport,
+.e-grid .e-toolbar [id*="excelexport"] {
+  background: var(--brand-600) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 999px !important;
+  padding: 8px 20px !important;
+  height: 36px !important;
+  min-width: 140px !important;
+  font-weight: var(--font-weight-semibold) !important;
+  font-size: var(--font-size-sm) !important;
+  box-shadow: none !important;
+  transition: all 0.2s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.e-grid .e-toolbar .e-tbar-btn.e-excelexport:hover,
+.e-grid .e-toolbar .e-btn.e-excelexport:hover,
+.e-grid .e-toolbar [id*="excelexport"]:hover {
+  background: var(--brand-700) !important;
+  transform: translateY(-1px);
+}
+
+/* Excel Export button - outline purple pill */
+.e-grid .e-toolbar .e-tbar-btn.e-excelexport,
+.e-grid .e-toolbar .e-btn.e-excelexport {
+  background: transparent !important;
+  color: var(--brand-600) !important;
+  border: 1px solid var(--brand-600) !important;
+  border-radius: var(--pill) !important;
+  padding: 8px 16px !important;
+  height: 36px !important;
+  min-width: 140px !important;
+}
+
+.e-grid .e-toolbar .e-tbar-btn.e-excelexport:hover,
+.e-grid .e-toolbar .e-btn.e-excelexport:hover {
+  background: rgba(109, 40, 217, 0.08) !important;
+}
+
+/* Icons */
+.e-grid .e-toolbar .e-icons {
+  color: white !important;
+  font-size: 18px !important;
+}
+
+.e-grid .e-toolbar .e-tbar-btn-text {
+  white-space: nowrap !important;
+}
+
+/* Fix only vertical alignment of toolbar buttons */
+.e-grid .e-toolbar .e-toolbar-item,
+.e-grid .e-toolbar .e-btn {
+  vertical-align: middle !important;
+  align-items: center !important;
+  display: inline-flex !important;
+}
+
+/* Force consistent height ONLY for the two buttons */
+.e-grid .e-toolbar .e-btn {
+  height: 38px !important;
+  /* match both buttons */
+  line-height: 38px !important;
+  /* prevents icon/text drift */
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* --- Segmented container: no gaps so edges can be straight --- */
+.status-seg {
+  position: relative;
+  /* anchor for indicator */
+  display: inline-flex;
+  align-items: stretch;
+  gap: 0;
+  /* remove gaps between tabs */
+  overflow: hidden;
+  padding: 0 !important;
+  /* was 4px; causes inner gap */
+  border: none !important;
+  /* removes the white ring inside */
+}
+
+/* --- Sliding underlay that becomes the filled pill --- */
+.status-seg .seg-indicator {
+  position: absolute;
+  right: 0 !important;
+  top: 0 !important;
+  /* was 4px; now full cover */
+  bottom: 0 !important;
+  /* was 4px; now full cover */
+  left: 0 !important;
+  width: 0;
+  /* set inline via React */
+  background: rgba(255, 255, 255, .28);
+  /* translucent fill; or use var(--brand-600) for solid */
+  border-radius: 0;
+  /* shape controlled by data-active-idx */
+  pointer-events: none;
+  z-index: 0;
+  /* sits under buttons */
+}
+
+/* --- Buttons above the underlay, transparent backgrounds --- */
+.seg-btn {
+  height: 35px;
+  position: relative;
+  z-index: 1;
+  border: 0 !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  background: transparent !important;
+  /* indicator supplies fill */
+  border-radius: 0 !important;
+  /* no per-button rounding for middles */
+}
+
+/* Keep outer pill curvature visually intact on the very ends */
+.seg-btn:first-child {
+  border-top-left-radius: 999px;
+  border-bottom-left-radius: 999px;
+}
+
+.seg-btn:last-child {
+  border-top-right-radius: 999px;
+  border-bottom-right-radius: 999px;
+}
+
+/* Active label contrast on the fill */
+.seg-btn.active {
+  color: #ffffff;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* --- Corner logic for the indicator using the exposed active index --- */
+/* 0 = Draft (first): left rounded, right straight */
+.status-seg[data-active-idx="0"] .seg-indicator {
+  border-top-left-radius: 999px;
+  border-bottom-left-radius: 999px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* 1,2 = Unpaid, Paid (middle): rectangle (no rounded corners) */
+.status-seg[data-active-idx="1"] .seg-indicator,
+.status-seg[data-active-idx="2"] .seg-indicator {
+  border-radius: 0;
+}
+
+/* 3 = Overdue (last): left straight, right rounded */
+.status-seg[data-active-idx="3"] .seg-indicator {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 999px;
+  border-bottom-right-radius: 999px;
+}
+
+
+/* Global rule (already in your file)
+.e-multi-line textarea.e-input, */
+textarea.e-input {
+  font-family: var(--font-family) !important;
+  font-size: var(--font-size-sm) !important;
+  /* 14px */
+  letter-spacing: 0.40px !important;
+}
+
+/* Notes & Terms: 12px only for these two multi-line inputs */
+.two-col .panel .notes-textarea.e-input-group textarea.e-input,
+.two-col .panel .notes-textarea.e-control-wrapper textarea.e-input,
+.two-col .panel .terms-textarea.e-input-group textarea.e-input,
+.two-col .panel .terms-textarea.e-control-wrapper textarea.e-input {
+  font-size: 12px !important;
+  /* override just these two areas */
+  letter-spacing: 0.40px !important;
+  /* keep your letter-spacing */
+}
+
+.Additional-card .textarea.e-input {
+  font-size: var(--font-size-xs) !important;
+  /* 14px */
+}
+
+/* Center the Tax Rate (%) and Discount (%) values in the summary card */
+.summary-card .summary-row .num-input.e-control-wrapper,
+.summary-card .summary-row .num-input.e-input-group,
+.summary-card .summary-row .num-input.e-numeric.e-control-wrapper {
+  display: flex;
+  align-items: center;
+  /* vertical centering */
+  padding: 0 12px !important;
+  /* equal top/bottom spacing (0/0) */
+}
+
+/* Make the input itself the same height and center the text */
+.summary-card .summary-row .num-input input.e-input {
+  line-height: 36px !important;
+  /* vertical centering of the text */
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100%;
+}
+
+/* === ICON INSIDE TEXTBOX (Left-aligned, no overlap) === */
+.input-with-icon {
+  position: relative;
+}
+
+/* Target Syncfusion's internal input wrapper directly */
+.input-with-icon .e-input-group,
+.input-with-icon .e-control-wrapper {
+  position: relative !important;
+  padding-left: 46px !important;   /* extra space for icon */
+}
+
+/* Place the icon inside the input field */
+.input-with-icon .e-input-group-icon {
+  position: absolute !important;
+  left: 16px !important;
+  top: 50% !important;
+  transform: translateY(-80%) !important; /* Updated: Slight upward shift for better alignment with placeholder */
+  font-size: 18px !important;       /* slightly larger, matches reference image */
+  color: #64748b !important;
+  pointer-events: none !important;
+  z-index: 10 !important;           /* above everything Syncfusion adds */
+}
+
+/* Ensure the actual input text starts after the icon */
+.input-with-icon input.e-input,
+.input-with-icon .e-input {
+  padding-left: 46px !important;
+  box-sizing: border-box !important;
+}
+
+/* Extra safety for focus state */
+.input-with-icon .e-input-group.e-input-focus,
+.input-with-icon .e-control-wrapper.e-input-focus {
+  border-color: #cbd5e1 !important;
+}
+
+/* Modifier for top-aligned icons in multiline inputs (e.g., address fields) */
+.input-with-icon.icon-top .e-input-group-icon {
+  top: 16px !important; /* Align to top, parallel with placeholder */
+  transform: none !important; /* Remove vertical centering */
+}
+
+/* Ensure the input padding remains consistent for top-aligned icons */
+.input-with-icon.icon-top .e-input-group,
+.input-with-icon.icon-top .e-control-wrapper {
+  padding-left: 46px !important; /* Keep left space for icon */
+}
+
+/* Override vertical position ONLY for SVG-based icons (email & phone) */
+.input-with-icon .svg-icon {
+  transform: translateY(-45%) !important;   /* Try -45% to -55% — start with -48% or -50% and adjust by 2-3% steps */
+}
+
+/* Optional: If still slightly off, you can fine-tune further with */
+.input-with-icon .svg-icon svg {
+  margin-top: -1px;   /* or -2px / 1px depending on visual test */
+}
+
+/* Footer row styling to match image */
+.e-grid .e-summaryrow {
+  background-color: #fff !important;
+  border-top: 1px solid #e5e7eb !important;  /* Light border like in image */
+}
+
+/* Empty cells in footer (hide borders if needed) */
+.e-grid .e-summaryrow .e-summarycell:not(.e-templatecell) {
+  border: none !important;
+}
+
+/* The amount cell with "Total: $value" */
+.e-grid .e-summaryrow .e-summarycell.e-templatecell {
+  text-align: right !important;
+  padding: 12px 16px !important;  /* Padding to match image spacing */
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: #1f2937 !important;
+}
