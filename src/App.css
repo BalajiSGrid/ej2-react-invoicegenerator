@@ -1,0 +1,21 @@
+/* App-specific helpers (structural styles in index.css) */
+#root {
+   max-width: 1200px;
+   margin: 0 auto;
+}
+
+.label {
+   font-size: var(--font-size-sm);
+   color: var(--color);
+   margin: 8px 0 4px;
+   font-weight: var(--font-weight-semibold);
+   font-family: var(--font-family);
+   letter-spacing: .30px
+}
+
+.preview-pane {
+   padding: 8px;
+   font-family: var(--font-family);
+}
+
+/* Add these styles to your existing App.css */

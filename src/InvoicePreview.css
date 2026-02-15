@@ -1,0 +1,567 @@
+/* Invoice Preview Component Styles */
+/* Matches PDF layout with pixel-perfect rendering */
+
+.invoice-preview-container {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  background: #f5f5f5;
+  padding: 24px;
+  font-family: var(--font-family);
+}
+
+.invoice-preview-page {
+  width: 8.5in;
+  height: auto;
+  background: white;
+  margin: 0 auto;
+  padding: 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  /* Use app tokens for base typography */
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  /* 14px to match main body text */
+  line-height: var(--line-height-normal);
+  /* 1.4 */
+  color: var(--color);
+}
+
+
+/* ===== HEADER SECTION ===== */
+.preview-header {
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  color: white;
+  padding: 17px 24px 17px 24px;
+  margin: -40px -40px 0 -40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  min-height: 90px;
+}
+
+.preview-header-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  flex: 1;
+}
+
+.preview-header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 12px;
+  text-align: right;
+}
+
+.preview-logo-section {
+  flex-shrink: 0;
+}
+
+.preview-logo {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 4px;
+  border: 1.5px solid rgba(255, 255, 255, 1);
+}
+
+.preview-logo-placeholder {
+  width: 56px;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1.5px solid white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 10pt;
+  color: var(--color);
+}
+
+.preview-header-title-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0;
+  margin-top: 10px;
+}
+
+.preview-header-title {
+  font-size: 32pt;
+  font-weight: bold;
+  line-height: 1;
+  margin: 0;
+}
+
+.preview-invoice-number-right {
+  font-size: 10pt;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+}
+
+.preview-status-badge-right {
+  font-size: 11pt;
+  font-weight: 600;
+  color: white;
+  margin: 0;
+}
+
+.preview-status-badge-right[data-status="paid"] {
+  color: #22c55e;
+}
+
+.preview-status-badge-right[data-status="unpaid"],
+.preview-status-badge-right[data-status="draft"],
+.preview-status-badge-right[data-status="overdue"] {
+  color: white;
+}
+
+/* ===== DATES SECTION ===== */
+.preview-dates-section {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0 30px 0;
+  padding: 0;
+}
+
+.preview-date-item {
+  flex: 0 0 auto;
+}
+
+.preview-date-item-right {
+  text-align: right;
+}
+
+.preview-date-label {
+  font-size: 12pt;
+  font-weight: bold;
+  color: #7c3aed;
+  margin-bottom: 4px;
+}
+
+.preview-date-value {
+  font-size: 10pt;
+  font-weight: bold;
+  color: #1f2937;
+}
+
+/* ===== DIVIDER ===== */
+.preview-divider {
+  height: 1.5px;
+  background-color: #e5e7eb;
+  margin: 18px 0;
+}
+
+/* ===== BILL FROM / BILL TO ===== */
+.preview-addresses {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.preview-address-block {
+  flex: 1;
+  min-width: 0;
+}
+
+.preview-address-block-right {
+  margin-left: 0;
+}
+
+
+.preview-address-label {
+  font-size: 12pt;
+  font-weight: bold;
+  color: #7c3aed;
+  margin-bottom: 12px;
+}
+
+.preview-address-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.preview-address-company {
+  font-size: 10pt;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+
+.preview-address-line {
+  white-space: pre-line;
+  font-size: 10pt;
+  color: var(--color);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.preview-address-email,
+.preview-address-contact,
+.preview-address-taxid,
+.preview-address-po {
+  font-size: 10pt;
+  color: var(--color);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* ===== ITEMS TABLE ===== */
+.preview-items-section {
+  margin-top: 42px;
+  margin-bottom: 20px;
+}
+
+.preview-items-title {
+  font-size: 12pt;
+  font-weight: bold;
+  color: #7c3aed;
+  margin-bottom: 16px;
+}
+
+.preview-items-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+}
+
+.preview-items-table thead {
+  background-color: #7c3aed;
+  color: white;
+}
+
+.preview-items-table th {
+  padding: 8px 10px;
+  text-align: left;
+  font-size: 11pt;
+  font-weight: bold;
+  border: none;
+  background-color: #7c3aed;
+  color: white;
+  vertical-align: middle;
+  height: 20px;
+}
+
+.preview-items-table th.col-sl {
+  width: 40px;
+  text-align: center;
+  padding-left: 5px;
+}
+
+.preview-items-table th.col-desc {
+  width: auto;
+  text-align: left;
+}
+
+.preview-items-table th.col-qty {
+  width: 80px;
+  text-align: center;
+}
+
+/* Price column - prevent wrapping and increase width */
+.preview-items-table th.col-price {
+  width: 140px;
+  /* Increased from 100px */
+  text-align: right;
+  padding-right: 10px;
+  white-space: nowrap;
+}
+
+.preview-items-table td.col-price {
+  text-align: right;
+  padding-right: 10px;
+  width: 140px;
+  /* Increased from 100px */
+  white-space: nowrap;
+  /* Prevent wrapping */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Amount column - prevent wrapping and increase width */
+.preview-items-table th.col-amount {
+  width: 160px;
+  /* Increased from 100px */
+  text-align: right;
+  padding-right: 10px;
+  white-space: nowrap;
+}
+
+.preview-items-table td.col-amount {
+  text-align: right;
+  padding-right: 10px;
+  width: 160px;
+  /* Increased from 100px */
+  white-space: nowrap;
+  /* Prevent wrapping */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Summary Card (Right) - flexible width for large values */
+.preview-summary-card {
+  border: 1.5px solid #e5e7eb;
+  background-color: #fafbfc;
+  padding: 16px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  min-width: 280px;
+  width: fit-content;
+}
+
+/* Summary values - display full amount in single line */
+.preview-summary-value {
+  color: #1f2937;
+  font-weight: bold;
+  text-align: right;
+  white-space: nowrap;
+  overflow: visible;
+}
+
+/* Total value - display full amount in single line */
+.preview-total-value {
+  color: #7c3aed;
+  font-weight: bold;
+  text-align: right;
+  white-space: nowrap;
+  overflow: visible;
+}
+
+/* Adjust bottom section grid to accommodate flexible summary card */
+.preview-bottom-section {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  margin-top: 20px;
+}
+
+/* For very large values, use smaller font size */
+@media (max-width: 800px) {
+  .preview-summary-card {
+    min-width: 280px;
+  }
+
+  .preview-bottom-section {
+    grid-template-columns: 1fr;
+  }
+
+  .preview-summary-value,
+  .preview-total-value {
+    font-size: 9pt;
+  }
+}
+
+
+
+.preview-items-table td {
+  padding: 8px 10px;
+  font-size: 10pt;
+  color: #1f2937;
+  border: 0.5px solid #e5e7eb;
+  vertical-align: middle;
+  height: 20px;
+}
+
+.preview-items-table td.col-sl {
+  text-align: center;
+  padding-left: 5px;
+  width: 40px;
+  font-weight: normal;
+}
+
+.preview-items-table td.col-desc {
+  text-align: left;
+  padding-left: 5px;
+}
+
+.preview-items-table td.col-qty {
+  text-align: center;
+  width: 80px;
+  font-weight: normal;
+}
+
+.preview-items-table tbody tr {
+  background-color: white;
+}
+
+.preview-items-table tbody tr.preview-row-even {
+  background-color: #f9fafb;
+}
+
+/* ===== SUMMARY CARD & NOTES SECTION ===== */
+
+
+/* Notes & Terms Section (Left) */
+.preview-notes-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Allow long unbroken text to wrap and allow the column to shrink inside the grid */
+.preview-notes-section,
+.preview-notes-content,
+.preview-terms-content {
+  min-width: 0;
+  /* allow flex/grid children to shrink rather than overflow */
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  white-space: normal;
+}
+
+.preview-notes-block,
+.preview-terms-block {
+  margin: 0;
+}
+
+.preview-notes-title,
+.preview-terms-title {
+  font-size: 12pt;
+  font-weight: bold;
+  color: #7c3aed;
+  margin-bottom: 12px;
+  margin-top: 18px;
+}
+
+.preview-notes-title:first-child,
+.preview-terms-title:first-child {
+  margin-top: 0;
+}
+
+.preview-notes-content,
+.preview-terms-content {
+  font-size: 10pt;
+  color: var(--color);
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.preview-notes-content div,
+.preview-terms-content div {
+  margin: 0;
+  padding: 0;
+  line-height: 1.4;
+  margin-bottom: 14px;
+}
+
+.preview-notes-content div:last-child,
+.preview-terms-content div:last-child {
+  margin-bottom: 0;
+}
+
+.preview-summary-title {
+  font-size: 12pt;
+  font-weight: bold;
+  color: #7c3aed;
+  margin-bottom: 12px;
+  margin-top: 0;
+}
+
+.preview-summary-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.preview-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10pt;
+  gap: 12px;
+}
+
+.preview-summary-label {
+  color: var(--color);
+  font-weight: normal;
+  flex: 1;
+}
+
+.preview-summary-divider {
+  height: 1px;
+  background-color: #d1d5db;
+  margin: 12px 0;
+}
+
+.preview-summary-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12pt;
+  border-radius: 2px;
+  gap: 12px;
+}
+
+.preview-total-label {
+  color: #7c3aed;
+  font-weight: bold;
+}
+
+/* Tax column styles */
+.preview-items-table .col-tax {
+  text-align: center;
+  width: 80px;
+  padding: 12px 8px;
+}
+
+.preview-tax-value {
+  color: #7c3aed;
+  font-weight: 600;
+}
+
+.preview-tax-none {
+  color: #9ca3af;
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  .invoice-preview-container {
+    background: white;
+    padding: 0;
+  }
+
+  .invoice-preview-page {
+    width: 8.5in;
+    height: 11in;
+    box-shadow: none;
+    margin: 0;
+    page-break-after: always;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* Allow long unbroken text to wrap inside address blocks */
+.preview-address-content,
+.preview-address-company,
+.preview-address-line {
+  min-width: 0;
+  /* lets flex/grid children shrink */
+  overflow-wrap: anywhere;
+  /* break long words anywhere if needed */
+  word-break: break-word;
+  /* break long continuous strings */
+  white-space: pre-wrap;
+  /* keep intentional newlines, allow wrapping */
+  line-height: 1.6;
+}
