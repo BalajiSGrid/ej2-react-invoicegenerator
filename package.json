@@ -1,0 +1,45 @@
+{
+  "name": "invoice-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@syncfusion/ej2-base": "^32.1.24",
+    "@syncfusion/ej2-data": "^32.1.24",
+    "@syncfusion/ej2-pdf-export": "^32.1.24",
+    "@syncfusion/ej2-react-buttons": "^32.1.24",
+    "@syncfusion/ej2-react-calendars": "^32.1.24",
+    "@syncfusion/ej2-react-dropdowns": "^32.1.25",
+    "@syncfusion/ej2-react-grids": "^32.1.25",
+    "@syncfusion/ej2-react-inputs": "^32.1.24",
+    "@syncfusion/ej2-react-layouts": "^32.1.24",
+    "@syncfusion/ej2-react-navigations": "^32.1.24",
+    "@syncfusion/ej2-react-notifications": "^32.1.24",
+    "@syncfusion/ej2-react-popups": "^32.1.24",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/node": "^24.10.1",
+    "@types/react": "18.2.48",
+    "@types/react-dom": "18.2.18",
+    "@vitejs/plugin-react": "^5.1.1",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.5.0",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.46.4",
+    "vite": "^7.2.4",
+    "vitest": "^4.0.18"
+  }
+}
